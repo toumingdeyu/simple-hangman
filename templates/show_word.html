@@ -1,0 +1,24 @@
+$def with (word, record)
+<h1> $word.letters </h1>
+<p> wins: $record[0] <p>
+<p> loses: $record[1] <p>
+
+<pre>
+<img src="/static/${word.life}.png" height="42" width="42">
+</pre>
+
+$if word.life == 0:
+    <p> You Lose! </p>
+    <p> The answer is $word.word <p>
+    <p><a href="/">Play Again?</a></p>
+$else:
+    $if word.remains == 0:
+        <p> You win! </p>
+        <p><a href="/">Play Again?</a></p>
+    $else:
+        <p> word used: $word.used
+            <p> $word.inputWarning </p>
+            <form action="/game" method="POST">
+                <input type="text" name="action" autofocus> <input type="SUBMIT" >
+            </form>
+        </p>
